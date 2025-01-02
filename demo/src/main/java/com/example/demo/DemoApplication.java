@@ -22,7 +22,7 @@ public class DemoApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(UtilisateurRepository utilisateurRepository, LivreRepository livreRepository){
 		return args -> {
-			/*Stream.of("Douae", "Wissal", "Ayman", "Ilyass", "Khadija", "Nezha", "Fatiha", "BentTemara")
+			Stream.of("Douae", "Wissal", "Ayman", "Ilyass", "Khadija", "Nezha", "Fatiha", "BentTemara")
 					.forEach(name -> {
 						Utilisateur utilisateur = new Utilisateur();
 						utilisateur.setNom(name);
@@ -45,7 +45,7 @@ public class DemoApplication {
 				livre.setStatus((StatutLivre) data[4]);
 				livreRepository.save(livre);
 			});
-*/
+
 
 		};
 	}
