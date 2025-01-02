@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.n/thymeleaf/layout"
+      layout:decorate="template">
+
+<head>
+    <title>Liste des Réservations</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-2">
+        <div class="card-header text-bold">liste des Emprunts</div>
+        <div class="card-body">
+            <form method="get" th:action="@{Emprunts}">
+                <label>entrer l'ID du utilisateur (2 par exemple)  </label>
+                <input type="text" name="id">
+                <button type="submit" class="btn btn-primary">Chercher</button>
+
+            </form>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date Début</th>
+                    <th>Date Fin</th>
+                    <th>Utilisateur</th>
+                    <th>Livre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="e : ${listEmprunts}">
+                    <td th:text="${e.id}"></td>
+                    <td th:text="${#dates.format(e.dateEmpIrunt, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(e.dateRetourPrevu, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${e.utilisateur.nom}"></td>
+                    <td th:text="${e.Livre.id}"></td>
+
+                </tbody>
+            </table>
+            <ul class="nav nav-pills">
+                <li th:each="page, status : ${pages}">
+                    <a th:class="${status.index == currentPage ? 'btn btn-info ms-1' : 'btn btn-outline-info ms-1'}"
+                       th:text="${status.index + 1}"
+                       th:href="@{reservations(page=${status.index}, size=${size}, id=${id})}">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
